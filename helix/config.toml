@@ -1,0 +1,28 @@
+theme = "everfrost"
+
+[editor]
+line-number = "relative"
+mouse = true
+bufferline = "always"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[keys.normal]
+d = "delete_selection_noyank"
+A-d = "delete_selection"
+C-s = ":w"
+
+[keys.normal.space]
+f = "file_picker_in_current_directory"
+F = "file_picker"
+
+[keys.insert]
+A-x = "normal_mode"
+j = { k = "normal_mode" }
+tab = "completion"

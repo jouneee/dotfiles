@@ -1,0 +1,47 @@
+[window]
+dimensions = { columns = 84, lines = 30}
+padding = {x = 0, y = 0}
+blur = true
+opacity = 0.95
+
+
+[selection]
+save_to_clipboard = true
+
+[terminal]
+shell = "fish"
+
+[font]
+normal = { family = "ComicShannsMono Nerd Font"}
+bold = { family = "ComicShannsMono Nerd Font", style = "bold"}
+italic = { family = "ComicShannsMono Nerd Font", style = "italic"}
+bold_italic = { family = "ComicShannsMono Nerd Font", style = "bold italic"}
+size = 20
+offset = { x = 0, y = 1 }
+
+[colors.primary]
+
+foreground = "#E1F5CB"
+background = "#1f271b"
+
+[colors.normal]
+
+black = "#727272"
+red = "#FF296D"
+green = "#16db93"
+yellow = "#E23826"
+blue = "#9EFF89"
+magenta = "#FF296D"
+cyan = "#03CEA4"
+white = "#ffffff"
+
+[colors.bright]
+
+black = "#000000"
+red = "#FF296D"
+green = "#98e2c6"
+yellow = "#E23826"
+blue = "#004fff"
+magenta = "#FF296D"
+cyan = "#03CEA4"
+white = "#ffffff"
