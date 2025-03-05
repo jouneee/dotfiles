@@ -10,6 +10,9 @@ insert = "bar"
 normal = "block"
 select = "underline"
 
+[editor.smart-tab]
+enable = false
+
 [editor.file-picker]
 hidden = false
 
@@ -17,12 +20,31 @@ hidden = false
 d = "delete_selection_noyank"
 A-d = "delete_selection"
 C-s = ":w"
+C-h = [ "jump_view_left", "move_char_left" ]
+C-j = [ "jump_view_down", "move_visual_line_down" ]
+C-k = [ "jump_view_up", "move_visual_line_up" ]
+C-l = [ "jump_view_right", "move_char_right" ]
 
 [keys.normal.space]
 f = "file_picker_in_current_directory"
 F = "file_picker"
 
 [keys.insert]
-A-x = "normal_mode"
-j = { k = "normal_mode" }
-tab = "completion"
+j = { k = "normal_mode", t = "goto_window_top", g = "goto_window_center",b = "goto_window_bottom", l = "goto_line_end", s = "goto_line_start" }
+
+C-h = "move_char_left"
+C-j = "move_visual_line_down"
+C-k = "move_visual_line_up"
+C-l = "move_char_right"
+C-x = "extend_line_below"
+
+C-S-h = "move_prev_word_start"
+C-S-l = "move_next_word_start"
+
+A-h = "delete_char_backward"
+A-l = "delete_char_forward"
+C-d = "delete_word_forward"
+A-d = "delete_selection_noyank"
+
+C-z = "undo"
+C-s = ":w"
