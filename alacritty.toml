@@ -16,32 +16,32 @@ normal = { family = "ComicShannsMono Nerd Font"}
 bold = { family = "ComicShannsMono Nerd Font", style = "bold"}
 italic = { family = "ComicShannsMono Nerd Font", style = "italic"}
 bold_italic = { family = "ComicShannsMono Nerd Font", style = "bold italic"}
-size = 20
+size = 14
 offset = { x = 0, y = 1 }
 
 [colors.primary]
 
-foreground = "#E1F5CB"
-background = "#1f271b"
+foreground = "#EdFcdd"
+background = "#1c2e1b"
 
 [colors.normal]
 
-black = "#727272"
-red = "#FF296D"
-green = "#16db93"
-yellow = "#E23826"
-blue = "#9EFF89"
-magenta = "#FF296D"
-cyan = "#03CEA4"
-white = "#ffffff"
+black = "0x32302f"
+red = "0xea6962"
+green = "0xa9b665"
+yellow = "0xd8a657"
+blue = "0x7daea3"
+cyan = "0x89b482"
+magenta = "0xd3869b"
+white = "0xd4be98"
 
 [colors.bright]
 
-black = "#000000"
-red = "#FF296D"
-green = "#98e2c6"
-yellow = "#E23826"
-blue = "#004fff"
-magenta = "#FF296D"
-cyan = "#03CEA4"
-white = "#ffffff"
+black = "0x32302f"
+red = "0xea6962"
+green = "0xa9b665"
+yellow = "0xd8a657"
+blue = "0x7daea3"
+cyan = "0x89b482"
+magenta = "0xd3869b"
+white = "0xd4be98"
