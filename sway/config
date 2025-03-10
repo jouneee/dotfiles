@@ -1,0 +1,26 @@
+include $HOME/.config/sway/variables.sh
+include $HOME/.config/sway/window_rules.sh
+include $HOME/.config/sway/visual.sh
+include $HOME/.config/sway/bindings.sh
+include $HOME/.config/sway/autostart.sh
+
+output DP-1 mode 2560x1440
+
+input "type:pointer" {
+  accel_profile "flat"
+  pointer_accel 0.5
+}
+
+focus_follows_mouse yes
+
+include /etc/sway/config.d/*
+
+exec uwsm app -- com.github.wwmm.easyeffects --gapplication-service
+exec systemctl --user enable --now hypridle.service 
+exec systemctl --user enable --now opentabletdriver.service
+exec systemctl --user enable --now waybar.service
+exec systemctl --user enable --now mako.service
+exec uwsm app -- swww-daemon
+exec nm-applet
+#exec swaync
+#exec --no-startup-id /usr/lib/xdg-desktop-portal -r
