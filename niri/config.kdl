@@ -37,7 +37,6 @@ input {
     }
 
     tablet {
-    	map-to-output "DP-1"
     }
 
     trackpoint {
@@ -51,8 +50,8 @@ input {
     }
 
     // Uncomment this to make the mouse warp to the center of newly focused windows.
-    warp-mouse-to-focus
-    focus-follows-mouse max-scroll-amount="30%"
+    //warp-mouse-to-focus
+    //focus-follows-mouse max-scroll-amount="30%"
 }
 
 // You can configure outputs by their name, which you can find
@@ -63,9 +62,9 @@ input {
 // Remember to uncomment the node by removing "/-"!
 output "DP-1" {
     mode "2560x1440@143.972"
-    scale 1.25
+    scale 1.0
     transform "normal"
-    position x=2560 y=0
+    position x=0 y=0
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -115,11 +114,24 @@ layout {
     }
 }
 
+spawn-at-startup "/usr/lib/polkit-kde-authentication-agent-1"
+spawn-at-startup 
 spawn-at-startup "xwayland-satellite"
-spawn-at-startup "easyeffects" "--gapplication-service"
+spawn-at-startup "com.github.wwmm.easyeffects" "--gapplication-service"
+spawn-at-startup "swww-daemon"
 
 environment {
 	DISPLAY ":0"
+  QT_QPA_PLATFORM "wayland;xcb"
+  ELECTRON_OZONE_PLATFORM_HINT "auto"
+  MOZ_DISABLE_RDD_SANDBOX "1"
+  LIBVA_DRIVER_NAME "nvidia"
+  __GLX_VENDOR_LIBRARY_NAME "nvidia"
+  NVD_BACKEND "direct"
+}
+
+cursor {
+  xcursor-size 24
 }
 
 prefer-no-csd
@@ -128,7 +140,13 @@ screenshot-path null
 
 animations {
     //off
+    
     slowdown 0.3
+}
+
+layer-rule {
+  match namespace="^notifications$"
+  block-out-from "screencast"
 }
 
 window-rule {
@@ -137,6 +155,9 @@ window-rule {
 }
 
 window-rule {
+  match app-id=r#"org.gnome.Nautilus"#
+  match app-id=r#"mpv"#
+  match app-id=r#"imv"#
 	match app-id=r#"steam$"# title="^Friends List$"
 	match app-id=r#"pavucontrol"#
 	match app-id=r#"^org\.telegram\.desktop$"# title="Media viewer"
@@ -145,7 +166,7 @@ window-rule {
 }
 
 window-rule {
-	match app-id=r#"^Waterfox$"#
+	match app-id=r#"^Librewolf$"#
 	match app-id=r#"^krita$"#
 	match app-id=r#"^codium$"#
 	default-column-width { proportion 1.0; }
@@ -201,7 +222,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+D { spawn "alacritty"; }
+    Mod+D { spawn "kitty"; }
     Super+Space { spawn "fuzzel"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
