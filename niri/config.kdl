@@ -51,7 +51,7 @@ input {
 
     // Uncomment this to make the mouse warp to the center of newly focused windows.
     //warp-mouse-to-focus
-    //focus-follows-mouse max-scroll-amount="30%"
+    //focus-follows-mouse max-scroll-amount="10%"  
 }
 
 // You can configure outputs by their name, which you can find
@@ -71,8 +71,16 @@ output "DP-1" {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
-    gaps 16
+    gaps 5
     center-focused-column "never"
+    always-center-single-column
+
+    // default-column-display "tabbed"
+
+    tab-indicator {
+        hide-when-single-tab
+        position "top"
+    }
 
     preset-column-widths {
         proportion 0.33333
@@ -91,11 +99,6 @@ layout {
 
     border {
         off
-        width 4
-        active-color "#ffc87f"
-        inactive-color "#505050"
-        // active-gradient from="#ffbb66" to="#ffc880" angle=45 relative-to="workspace-view"
-        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
     }
 
     shadow {
@@ -107,15 +110,14 @@ layout {
     }
 
     struts {
-        //left 16
-        //right 16
-        // top 64
-        // bottom 64
+        left 8
+        right 8
+        top 16
+        bottom 16
     }
 }
 
 spawn-at-startup "/usr/lib/polkit-kde-authentication-agent-1"
-spawn-at-startup 
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "com.github.wwmm.easyeffects" "--gapplication-service"
 spawn-at-startup "swww-daemon"
@@ -139,48 +141,32 @@ prefer-no-csd
 screenshot-path null
 
 animations {
-    //off
-    
-    slowdown 0.3
+    off
+    // slowdown 0.08
 }
 
-layer-rule {
-  match namespace="^notifications$"
-  block-out-from "screencast"
-}
+// general rules
 
 window-rule {
-    geometry-corner-radius 6
+    geometry-corner-radius 0
     clip-to-geometry true
 }
 
 window-rule {
-  match app-id=r#"org.gnome.Nautilus"#
-  match app-id=r#"mpv"#
-  match app-id=r#"imv"#
-	match app-id=r#"steam$"# title="^Friends List$"
-	match app-id=r#"pavucontrol"#
-	match app-id=r#"^org\.telegram\.desktop$"# title="Media viewer"
-	match app-id=r#"thunar$"#	
-	open-floating true
+	  match is-floating=true
+	  draw-border-with-background false
+}
+
+// screencast rules
+layer-rule {
+    match namespace="^notifications$"
+    block-out-from "screencast"
 }
 
 window-rule {
-	match app-id=r#"^Librewolf$"#
-	match app-id=r#"^krita$"#
-	match app-id=r#"^codium$"#
-	default-column-width { proportion 1.0; }
-}
-
-window-rule {
-	match app-id=r#"^org\.telegram\.desktop$"#
-	block-out-from "screencast"
-	default-column-width { proportion 0.3333; }
-}
-
-window-rule {
-	match is-floating=true
-	draw-border-with-background false
+	  match app-id=r#"^org\.telegram\.desktop$"#
+	  block-out-from "screencast"
+	  default-column-width { proportion 0.3333; }
 }
 
 window-rule {
@@ -200,6 +186,65 @@ window-rule {
 		active-color "#faff81"
 		inactive-color "#ffc53a"
 	}
+}
+
+// application rules
+
+window-rule {
+  match app-id=r#"org.gnome.Nautilus"#
+  match app-id=r#"Thunar$"#
+  match app-id=r#"mpv"#
+  match app-id=r#"imv"#
+	match app-id=r#"^steam$"# title="^Friends List$"
+	match app-id=r#"pavucontrol"#
+	match app-id=r#"thunar"#
+  match app-id=r#"PortProton"#
+  match app-id=r#"mousepad"#
+  open-floating true
+  open-maximized false
+  open-fullscreen false
+}
+
+window-rule{
+	match app-id=r#"^org\.telegram\.desktop$"# title="Media viewer"
+  open-floating true
+  open-maximized true
+}
+
+window-rule {
+  match app-id=r#"imv"#
+  match app-id=r#"mpv"#
+  default-column-width { proportion 0.5; }
+  default-window-height { fixed 720; }
+}
+
+window-rule {
+  match app-id=r#"kitty"#
+  default-column-display "tabbed"
+}
+
+window-rule {
+  match app-id=r#"steam"# title="Sign in to Steam"
+  default-column-width {}
+  open-focused false
+}
+
+window-rule {
+  match title="gsr ui"
+  opacity 0.5
+  open-floating true
+  open-maximized false
+  open-fullscreen false
+}
+
+window-rule {
+	match app-id=r#"^LibreWolf$"#
+	match app-id=r#"^krita$"#
+	match app-id=r#"^codium$"#
+	match app-id=r#"^osu!$"#
+  match app-id=r#"^magicavoxel.exe$"#
+  open-maximized true
+  default-column-width { proportion 1.0; }
 }
 
 hotkey-overlay {
