@@ -194,8 +194,7 @@ window-rule {
   match app-id=r#"org.gnome.Nautilus"#
   match app-id=r#"Thunar$"#
   match app-id=r#"mpv"#
-  match app-id=r#"imv"#
-	match app-id=r#"^steam$"# title="^Friends List$"
+  match app-id=r#"imv"#	
 	match app-id=r#"pavucontrol"#
 	match app-id=r#"thunar"#
   match app-id=r#"PortProton"#
@@ -238,13 +237,36 @@ window-rule {
 }
 
 window-rule {
-	match app-id=r#"^LibreWolf$"#
-	match app-id=r#"^krita$"#
+	match app-id=r#"librewolf"#
+  match app-id=r#"krita"
 	match app-id=r#"^codium$"#
 	match app-id=r#"^osu!$"#
   match app-id=r#"^magicavoxel.exe$"#
+  match app-id=r#"^Godot$"#
   open-maximized true
   default-column-width { proportion 1.0; }
+}
+
+window-rule {
+  match app-id=r#"krita"#
+  exclude title=r#"^Krita$"#
+  open-floating true
+  default-column-width { proportion 0.5; }
+  default-window-height { fixed 720; }
+}
+
+window-rule {
+  match app-id=r#"Godot"#
+  exclude title=r#"(.)Godot Engine"#
+  open-floating true
+  default-column-width { proportion 0.666; }
+  default-window-height { fixed 1100; }
+}
+
+window-rule {
+  match app-id=r#"^steam$"#
+  exclude title=r#"^Steam$"#
+  open-floating true
 }
 
 hotkey-overlay {
@@ -264,7 +286,7 @@ binds {
 
     // Mod-Shift-/, which is usually the same as Mod-?,
     // shows a list of important hotkeys.
-    Mod+Shift+Slash { show-hotkey-overlay; }
+    // Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+D { spawn "kitty"; }
@@ -377,8 +399,8 @@ binds {
     Mod+Shift+Right { set-column-width "+10%"; }
 
     // Finer height adjustments when in column with other windows.
-    Mod+Ctrl+Shift+Left { set-window-height "-10%"; }
-    Mod+Ctrl+Shift+Right { set-window-height "+10%"; }
+    Mod+Ctrl+Shift+Up { set-window-height "-10%"; }
+    Mod+Ctrl+Shift+Down { set-window-height "+10%"; }
 
     // Move the focused window between the floating and the tiling layout.
     Mod+V       { toggle-window-floating; }
@@ -401,4 +423,5 @@ binds {
     Ctrl+Alt+Delete { quit; }
 
     Mod+Shift+P { power-off-monitors; }
-}
+    Mod+Shift+L { spawn "~/.config/niri/hyprlock.sh"; }
+  }
