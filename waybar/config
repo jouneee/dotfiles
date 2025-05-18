@@ -1,49 +1,59 @@
 {
     "layer": "bottom",
-    "position": "bottom",
+    "position": "top",
     "mod": "dock",
+    "reload_style_on_change": true,
     "exclusive": true,
     "gtk-layer-shell": true,
     "margin-bottom": -1,
     "passthrough": false,
     "height": 41,
     "modules-left": [
+        "custom/os_button",
         "niri/workspaces",
         "wlr/taskbar"
     ],
-    "modules-center": [],
+    "modules-center": [
+        "custom/ScrollMPRIS"
+    ],
     "modules-right": [
+        "network",
         "cpu",
-        "temperature",
         "memory",
         "disk",
         "tray",
         "pulseaudio",
-        "network",
         "niri/language",
         "clock"
     ],
-    "language": {
+    "niri/language": {
         "format": "{}",
         "format-en": "ENG",
         "format-ru": "РУС"
     },
+    "niri/workspaces": {
+        "format": "{icon}",
+        "icon-size": 32,
+        "spacing": 16,
+        "format-icons": {
+            "active": "",
+            "default": ""
+        }
+        
+    },
+    "custom/os_button": {
+        "format": "鸡",
+        "on-click": "wofi --show drun",
+        "tooltip": false
+    },
     "cpu": {
         "interval": 5,
-        "format": " {usage}%",
+        "format": " {usage}% ",
         "max-length": 10
-    },
-    "temperature": {
-        "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon/hwmon1",
-        "input-filename": "temp2_input",
-        "critical-threshold": 75,
-        "tooltip": false,
-        "format-critical": "({temperatureC}°C)",
-        "format": "({temperatureC}°C)"
     },
     "disk": {
         "interval": 30,
-        "format": "󰋊 {percentage_used}%",
+        "format": " {percentage_used}% 󰋊",
         "path": "/",
         "tooltip": true,
         "unit": "GB",
@@ -51,23 +61,24 @@
     },
     "memory": {
         "interval": 10,
-        "format": "  {percentage}%",
+        "format": " {percentage}% ",
         "max-length": 10,
         "tooltip": true,
         "tooltip-format": "RAM - {used:0.1f}GiB used"
     },
     "wlr/taskbar": {
-        "format": "{icon} {title:.17}",
+        "format": "{icon} {name}",
         "icon-size": 28,
         "spacing": 3,
+        "on-click": "activate",
+        "on-click-right": "minimize",
         "on-click-middle": "close",
         "tooltip-format": "{title}",
-        "ignore-list": [],
-        "on-click": "activate"
+        "ignore-list": []
     },
     "tray": {
-        "icon-size": 18,
-        "spacing": 3
+        "icon-size": 22,
+        "spacing": 3    
     },
     "clock": {
         "format": "      {:%R\n %d.%m.%Y}",
@@ -95,46 +106,21 @@
         }
     },
     "network": {
+        "format": "{bandwidthDownBits} ",
+        "interval": 5,
         "format-wifi": " {icon}",
-        "format-ethernet": " ",
-        "format-disconnected": "󰌙",
-        "format-icons": [
-            "󰤯 ",
-            "󰤟 ",
-            "󰤢 ",
-            "󰤢 ",
-            "󰤨 "
-        ]
-    },
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 20
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{time} {icon}",
-        "format-icons": [
-            "󰂎",
-            "󰁺",
-            "󰁻",
-            "󰁼",
-            "󰁽",
-            "󰁾",
-            "󰁿",
-            "󰂀",
-            "󰂁",
-            "󰂂",
-            "󰁹"
-        ]
+        "format-disconnected": "No connection 󰌙",
+        "tooltip-format": "{ipaddr}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)   \n{ipaddr} | {frequency} MHz{icon} ",
+        "tooltip-format-ethernet": "{ifname} 󰈀 \n{ipaddr} | {frequency} MHz{icon} ",
+        "tooltip-format-disconnected": "Not Connected to any type of Network",
+        "tooltip": true,
     },
     "pulseaudio": {
         "max-volume": 100,
-        "scroll-step": 10,
-        "format": "{icon}",
-        "tooltip-format": "{volume}%",
+        "scroll-step": 5,
+        "format": "{volume}% {icon}",
+        "tooltip-format": "{format-source}",
         "format-muted": " ",
         "format-icons": {
             "default": [
@@ -144,5 +130,11 @@
             ]
         },
         "on-click": "pavucontrol"
+    },
+    "custom/ScrollMPRIS": {
+        "return-type": "json",
+        "exec": "/home/catwizard/.config/waybar/ScrollMPRIS -s 30 -w 32 --freeze --format '{artist} - {title}' --no-icon",
+        "escape": true,
+        "on-click": "playerctl play-pause"
     }
 }
