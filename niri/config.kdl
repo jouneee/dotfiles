@@ -74,6 +74,7 @@ layout {
     gaps 5
     center-focused-column "never"
     always-center-single-column
+    background-color "transparent"
 
     // default-column-display "tabbed"
 
@@ -117,6 +118,10 @@ layout {
     }
 }
 
+overview {
+  zoom 0.45
+}
+
 spawn-at-startup "/usr/lib/polkit-kde-authentication-agent-1"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "com.github.wwmm.easyeffects" "--gapplication-service"
@@ -141,8 +146,8 @@ prefer-no-csd
 screenshot-path null
 
 animations {
-    off
-    // slowdown 0.08
+    //off
+    slowdown 0.2
 }
 
 // general rules
@@ -155,6 +160,11 @@ window-rule {
 window-rule {
 	  match is-floating=true
 	  draw-border-with-background false
+}
+
+layer-rule {
+  match namespace="^wallpaper$"
+  place-within-backdrop true
 }
 
 // screencast rules
@@ -257,10 +267,16 @@ window-rule {
 
 window-rule {
   match app-id=r#"Godot"#
-  exclude title=r#"(.)Godot Engine"#
+  exclude title=r#"Godot.*"#
+  exclude title=r#".*DEBUG"#
   open-floating true
   default-column-width { proportion 0.666; }
   default-window-height { fixed 1100; }
+}
+
+window-rule {
+  match title=r#".*DEBUG"#
+  open-floating true
 }
 
 window-rule {
@@ -391,6 +407,7 @@ binds {
     Mod+Ctrl+R { reset-window-height; }
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
+    Mod+Ctrl+Shift+F { toggle-windowed-fullscreen; }
     Mod+C { center-column; }
 	
     Mod+W { toggle-column-tabbed-display; }
@@ -414,9 +431,12 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
-    Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
+    Print { screenshot show-pointer=true; }
+    Ctrl+Print { screenshot-screen show-pointer=true; }
+
+    Alt+Print { set-dynamic-cast-window; }
+    Ctrl+Alt+Print { clear-dynamic-cast-target; }
+
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
     Mod+Shift+E { quit; }
@@ -424,4 +444,8 @@ binds {
 
     Mod+Shift+P { power-off-monitors; }
     Mod+Shift+L { spawn "~/.config/niri/hyprlock.sh"; }
+  }
+
+  debug {
+    wait-for-frame-completion-in-pipewire
   }
