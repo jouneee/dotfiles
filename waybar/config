@@ -5,6 +5,7 @@
     "reload_style_on_change": true,
     "exclusive": true,
     "gtk-layer-shell": true,
+    "margin": "0 500 2 500",
     "margin-bottom": -1,
     "passthrough": false,
     "height": 41,
@@ -14,15 +15,13 @@
         "wlr/taskbar"
     ],
     "modules-center": [
-        "custom/ScrollMPRIS"
+        "mpris", "cava"
     ],
     "modules-right": [
-        "network",
-        "cpu",
-        "memory",
-        "disk",
+        "group/utils",
         "tray",
-        "pulseaudio",
+        "pulseaudio#output",
+        "pulseaudio#input",
         "niri/language",
         "clock"
     ],
@@ -77,11 +76,12 @@
         "ignore-list": []
     },
     "tray": {
-        "icon-size": 22,
-        "spacing": 3    
+        "icon-size": 32,
+        "spacing": 4    
     },
     "clock": {
-        "format": "      {:%R\n %d.%m.%Y}",
+        "format": "{:%H:%M}",
+        "format-alt": "{:%A %d.%m}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
             "mode": "year",
@@ -116,25 +116,72 @@
         "tooltip-format-disconnected": "Not Connected to any type of Network",
         "tooltip": true,
     },
-    "pulseaudio": {
+    "pulseaudio#input": {
+        "format-source": "",
+        "format-source-muted": " ",
+        "format": "{format_source}",
+        "scroll-step": false,
+        "smooth-scrolling-threshold": 1,
         "max-volume": 100,
-        "scroll-step": 5,
-        "format": "{volume}% {icon}",
-        "tooltip-format": "{format-source}",
-        "format-muted": " ",
+        "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+        "on-click-middle": "pavucontrol",
+        "on-scroll-up": false,
+        "on-scroll-down": false
+    },
+    "pulseaudio#output": {
+        "format": "{icon} ",
+        "format-muted": "x",
         "format-icons": {
-            "default": [
-                " ",
-                " ",
-                " "
-            ]
+            "default": ["", "", ""]
         },
-        "on-click": "pavucontrol"
+        "max-volume": 100,
+        "scroll-step": false,
+        "smooth-scrolling-threshold": 1,
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-middle": "pavucontrol"
+    },
+    "mpris": {
+        "format": "{dynamic}",
+        "dynamic-order": ["album", "artist", "title"],
+        "dynamic-separator": " - ",
+        "title-len": "15",
+        "player-icons": {
+            "default": "▶"
+        },
+        "status-icons": {
+            "playing": ">",
+            "paused": "⏸"
+        },
+        "on-click-right": false
     },
     "custom/ScrollMPRIS": {
         "return-type": "json",
-        "exec": "/home/catwizard/.config/waybar/ScrollMPRIS -s 30 -w 32 --freeze --format '{artist} - {title}' --no-icon",
+        "exec": "/home/catwizard/.config/waybar/ScrollMPRIS -s 15 -w 15 --freeze --format '{title}' --no-icon",
         "escape": true,
         "on-click": "playerctl play-pause"
-    }
+    },
+    "custom/titleScroller": {
+        "exec": "~/.config/waybar/scroller.py"
+    },
+    "custom/updates": {
+        "format": "{} 󱧕",
+        "tooltip": true,
+        "interval": 43200,               // 12 h
+        "exec": "~/.config/waybar/check_updates.sh",
+        "return-type": "json"
+    },
+    "custom/arrow-left": { "format": "&lt;", "tooltip": false},
+    "custom/arrow-right": { "format": ">", "tooltip": false},
+
+    "group/utils": {
+        "orientation": "inherit",
+        "drawer": { "transition-duration": 300, "transition-left-to-right": false },
+        "modules": [
+            "custom/arrow-left",
+            "network",
+            "cpu",
+            "memory",
+            "disk"
+        ]
+    }    
 }

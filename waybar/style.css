@@ -1,31 +1,40 @@
 @import url('../../.cache/wal/colors-waybar.css');
 
-@define-color bg_main @background;
-@define-color bg_main_tooltip @background;
-@define-color bg_hover @color4;
-@define-color bg_active @color5;
+@define-color bg @background;
+@define-color fg @foreground;
+@define-color active @color4;
+@define-color hover @color5;
 @define-color border_main rgba(0,0,0,0);
-@define-color content_main @foreground;
-@define-color content_inactive rgba(255, 255, 255, 0.3);
+@define-color inactive rgba(255, 255, 255, 0.3);
+
+@define-color c0 @color0;
+@define-color c1 @color1;
+@define-color c2 @color2;
+@define-color c3 @color3;
+@define-color c4 @color4;
+@define-color c5 @color5;
+@define-color c6 @color6;
+@define-color c7 @color7;
+@define-color c8 @color8;
 
 * {
 	text-shadow: none;
 	box-shadow: none;
 	border: none;
 	border-radius: 0;
-	font-family: "Maple Mono NF";
+	font-family: "Maple Mono NF", "Noto Sans Mono CJK JP", "Noto Sans Mono CJK KR", "Noto Sans Mono CJK HK", "Noto Sans Mono CJK TC";
 	font-weight: 600;
 }
 
 window#waybar {
-	background: @bg_main;
-	color: @content_main;
+	background: black;
+	background-size: cover;
+	color: @fg;
 }
 
-tooltip {
+bg { 
 	font-size: 18px;
-	color: @content_main;
-	background: @bg_main_tooltip;
+	background: @bg;
 	border-radius: 5px;
 	border-width: 1px;
 	border-style: solid;
@@ -34,75 +43,103 @@ tooltip {
 
 #custom-os_button {
 	font-size: 24px;
-	padding-left: 12px;
-	padding-right: 12px;
-	transition: all 0.25s ease-out;
+	padding: 0 10px 0 10px;
+	transition: all 0.15s ease-out;
 }
 
 #custom-os_button:hover {
-	background: @bg_hover;
-	color: white;
+	background: @hover;
+	color: @c0;
+}
+
+#custom-arrow-left {
+	font-size: 18px;
+}
+
+#custom-arrow-right {
+	font-size: 18px;
+}
+
+#mpris {
+	color: @fg;
+	font-size: 18px;
+}
+
+#mpris.paused {
+	color: @inactive;
+}
+
+#custom-updates {
+	font-size: 18px;
+	margin: 0 5px 0 5px;;
 }
 
 #workspaces button {
 	font-size: 18px;
-	padding-left: 16px;
-	padding-right: 20px;
-	color: @content_inactive;
+	opacity: 1;
+	padding: 0 15px 0 10px;
+	color: @inactive;
 	transition: all 0.08s ease-out;
 }
 
 #workspaces button.active {
-	color: @content_main;
-}
-
-#workspaces button.focused {
-	color: @content_main;
-}
-
-#workspaces button.urgent {
-	background: rgba(255, 200, 0, 0.35);
-	color: @warning_color;
+	color: @c0;
+	background: @active;
 }
 
 #workspaces button:hover {
-	background: @bg_hover;
+	background: @hover;
 	color: white;
+}
+
+#workspaces button.focused {
+	color: @c0;
+}
+
+#workspaces button.focused:hover {
+	color: white;
+}
+
+#workspaces button.urgent {
+	background: @c2;
+	color: @warning_color;
 }
 
 #taskbar {
 	font-size: 0px;
-	color: @content_main;
+	color: @fg;
 }
 
 #taskbar button {
 	min-width: 10px;
-	border-bottom: 3px solid @content_inactive;
-	margin-left: 2px;
-	margin-right: 2px;
-	padding-left: 8px;
-	padding-right: 9px;
-	transition: all 0.08s ease-in-out;
-	color: @content_main;
+	padding: 0 10px 0 10px;
+	transition: none;
+	color: @fg;
+}
+
+#taskbar button:nth-child(even) {
+	min-width: 10px;
+	padding: 0 10px 0 10px;
+	transition: none;
+	border-bottom: 4px solid @c5;
+	color: @fg;
 }
 
 #taskbar button.active {
 	font-size: 18px;
-	border-bottom: 3px solid white;
-	background: @bg_active;
+	background: @c1;
+	color: @c0;
 }
 
 #taskbar button:hover {
-	border-bottom: 3px solid white;
-	background: @bg_hover;
+	background: @c4;
 	color: white;
 }
 
 #cpu, #disk, #memory, #network {
 	font-size: 18px;
-	padding: 3px;
-	padding-left: 7px;
-	margin-right: 2px;
+	padding: 0 5px 0 5px;
+
 }
 
 #temperature {
@@ -121,13 +158,12 @@ tooltip {
 
 #window {
   border-radius: 10px;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin: 0 5px 0 5px;
 }
 
 #tray{
-  margin-left: 10px;
-  margin-right: 10px;
+	margin: 0 -5px 0 5px;
+	padding: 0 10px 0 10px;
 }
 #tray > .passive {
 	border-bottom: none;
@@ -136,39 +172,43 @@ tooltip {
 	border-bottom: 3px solid @warning_color;
 }
 #tray > widget {
+	font-size: 18px;
 	transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 #tray > widget:hover {
-	background: @bg_hover;
+	background: @active;
 }
 
 #pulseaudio {
 	font-size: 18px;
-	padding-left: 7px;
-	padding-right: 3px;
+	margin: 0 5px 0 5px;
+	padding: 0 10px 0 10px;
 	transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
+
+#pulseaudio.input {
+	font-size: 18px;
+	margin: 0 5px 0 5px;
+	padding: 0 10px 0 10px;
+	transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
 #pulseaudio:hover {
- 	background: @bg_hover;
+ 	background: @c4;
 }
 
 #language {
 	font-size: 18px;
-	padding-left: 7px;
-	padding-right: 5px;
-	margin-right: 2px;
+	padding: 0 10px 0 10px;
+	margin: 0 5px 0 5px;
 }
 
 #clock {
 	font-size: 18px;
-	padding-right: 7px;
-	padding-left: 5px;
-	margin-right: 2px;
+	padding: 0 10px 0 10px;
+	margin: 0 5px 0 5px;
 	transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 #clock:hover {
-	background: @bg_hover;
-}
-#custom-ScrollMPRIS {
-	font-size: 18px;
+	background: @active;
 }
