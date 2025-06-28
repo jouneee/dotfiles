@@ -54,6 +54,13 @@ input {
     //focus-follows-mouse max-scroll-amount="10%"  
 }
 
+gestures {
+  hot-corners {
+    off
+  }
+}
+
+
 // You can configure outputs by their name, which you can find
 // by running `niri msg outputs` while inside a niri instance.
 // The built-in laptop monitor is usually called "eDP-1".
@@ -64,7 +71,15 @@ output "DP-1" {
     mode "2560x1440@143.972"
     scale 1.0
     transform "normal"
+    focus-at-startup
     position x=0 y=0
+}
+
+output "HDMI-A-1" {
+    mode "1920x1080@60"
+    scale 1.0
+    transform "90"
+    position x=2560 y=0
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -93,7 +108,7 @@ layout {
 
     focus-ring {
         // off
-        width 3
+        width 2
         inactive-color "#505050"
         active-gradient from="#40f99b" to="#45ecff" angle=69
     }
@@ -111,8 +126,8 @@ layout {
     }
 
     struts {
-        left 6
-        right 6
+        left 0
+        right 0
         top 6
         bottom 6
     }
@@ -150,9 +165,13 @@ prefer-no-csd
 screenshot-path null
 
 animations {
-    //off
-    slowdown 0.2
-}
+    off
+    // slowdown 0.125 
+    }
+
+workspace "vertical" {
+    open-on-output "HDMI-A-1"
+} 
 
 // general rules
 
@@ -175,6 +194,11 @@ layer-rule {
 layer-rule {
     match namespace="^notifications$"
     block-out-from "screencast"
+}
+
+layer-rule {
+  match namespace=r#"(.)"#
+  baba-is-float false
 }
 
 window-rule {
@@ -206,6 +230,7 @@ window-rule {
 
 window-rule {
   match app-id=r#"org.gnome.Nautilus"#
+  match app-id=r#"nemo"#
   match app-id=r#"Thunar$"#
   match app-id=r#"mpv"#
   match app-id=r#"imv"#	
@@ -216,6 +241,23 @@ window-rule {
   open-floating true
   open-maximized false
   open-fullscreen false
+}
+
+window-rule {
+	match app-id=r#"librewolf"#
+  match app-id=r#"krita"#
+	match app-id=r#"codium"#
+	match app-id=r#"^osu!$"#
+  match app-id=r#"^magicavoxel.exe$"#
+  match app-id=r#"^Godot$"#
+  match app-id=r#"^steam_app_.*$"#
+  open-maximized true
+  default-column-width { proportion 1.0; }
+}
+
+window-rule {
+  match app-id=r#"codium"#
+  open-on-workspace "vertical"
 }
 
 window-rule{
@@ -238,6 +280,7 @@ window-rule {
 
 window-rule {
   match app-id=r#"steam"# title="Sign in to Steam"
+  match app-id=r#"org.gnome.FileRoller"# title="Extract"
   default-column-width {}
   open-focused false
 }
@@ -246,11 +289,6 @@ window-rule {
   match app-id=r#"^steam$"#
   exclude title=r#"^Steam$"#
   open-floating true
-}
-
-window-rule {
-  match app-id=r#"^steam_app_.*$"#
-  default-column-width { proportion 1.0; }
 }
 
 window-rule {
@@ -267,17 +305,6 @@ window-rule {
     off
   }
   open-floating true
-}
-
-window-rule {
-	match app-id=r#"librewolf"#
-  match app-id=r#"krita"
-	match app-id=r#"^codium$"#
-	match app-id=r#"^osu!$"#
-  match app-id=r#"^magicavoxel.exe$"#
-  match app-id=r#"^Godot$"#
-  open-maximized true
-  default-column-width { proportion 1.0; }
 }
 
 window-rule {
@@ -425,8 +452,10 @@ binds {
 	
     Mod+W { toggle-column-tabbed-display; }
 
-    Mod+Shift+Left { set-column-width "-10%"; }
-    Mod+Shift+Right { set-column-width "+10%"; }
+    Mod+Shift+Left { focus-monitor-left; }
+    Mod+Shift+Right { focus-monitor-right; }
+    Mod+Ctrl+Shift+Left { move-column-to-monitor-left; }
+    Mod+Ctrl+Shift+Right { move-column-to-monitor-right; }
 
     // Finer height adjustments when in column with other windows.
     Mod+Ctrl+Shift+Up { set-window-height "-10%"; }
@@ -457,6 +486,7 @@ binds {
 
     Mod+Shift+P { power-off-monitors; }
     Mod+Shift+L { spawn "~/.config/niri/swaylock.sh"; }
+    Mod+Shift+C { spawn "hyprpicker" "-a";}
   }
 
   debug {
