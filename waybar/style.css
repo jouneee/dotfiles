@@ -1,0 +1,139 @@
+@import "colors.css";
+@define-color fg @foreground;
+@define-color bg @background;
+@define-color c1 @color1;
+@define-color c2 @color2;
+@define-color c3 @color3;
+@define-color c4 @color4;
+@define-color c5 @color5;
+@define-color c6 @color6;
+
+
+* {
+  border: none;
+  font-family: "Maple Mono NF";
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 80ms linear;
+}
+
+window#waybar {
+  color: @fg;
+  background: @bg;
+  border-radius: 0px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: @fg;
+  margin-right: 3px;
+}
+
+.modules-left,
+.modules-right,
+.modules-center {
+  background: none;
+  padding: 0;
+  margin: 4px 10px 4px 10px;
+}
+
+tooltip {
+  color: @fg;
+  background-color: @bg;
+  text-shadow: none;
+}
+
+tooltip * {
+  color: @fg;
+  text-shadow: none;
+}
+
+#custom-sep, #custom-group-sep {
+  color: @c1;
+  padding: 0;
+  margin: 0px;
+}
+
+#custom-os_button {
+  font-size: 22px;
+  padding: 0;
+}
+
+#custom-os_button:hover {
+  color: @c1;
+}
+
+#taskbar {
+  background: none;
+  padding: 0;
+  margin-top: -6px;
+  margin-bottom: -6px;
+  padding: 0;
+}
+
+#taskbar button:hover {
+  background: none;
+}
+
+#taskbar button.active {
+}
+
+#language {
+  color: @fg;
+}
+
+#workspaces {
+  border-radius: 4px;
+}
+#workspaces button {
+  color: @c1;
+  padding: 0 7px 0 7px;
+  background: none;
+}
+#workspaces button:hover {
+  color: @c5;
+}
+#workspaces button.active {
+  color: @fg;
+}
+
+#cpu, #memory, #disk, #network, #custom-nvidia-temp, #custom-nvidia-util {
+    margin: 0px 7px 0px 7px;
+}
+
+#cpu {
+  color: @c2;
+}
+
+#memory {
+  color: @c3;
+}
+
+#network {
+  color: @c4;
+}
+
+#disk {
+  color: @c5;
+}
+
+#custom-nvidia-temp {
+  color: @c6;
+}
+
+#custom-nvidia-util {
+  color: @c1;
+}
+
+#clock {
+  font-weight: 600;
+  color: @fg;
+}
+
+#pulseaudio {
+  color: @fg;
+  margin: 0px 7px 0px 7px;
+}
+
+#pulseaudio.muted {
+  color: @c1;
+}
+
