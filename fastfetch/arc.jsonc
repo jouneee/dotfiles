@@ -8,15 +8,14 @@
       },
       "type": "auto",
       "position": "left",
-      "width": 35    
     },
     "display": {
-        "separator": " "
+        "separator": ""
     },
     "modules": ["break",
         {
             "type": "title",
-            "key": "╭─󰌢",
+            "key": "󰌢",
             "keyColor": "green"
         },
         {
