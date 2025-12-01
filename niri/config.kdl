@@ -1,21 +1,14 @@
-/// This config is in the KDL format: https://kdl.dev
-// "/-" comments out the following node.
-// Check the wiki for a full description of the configuration:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Overview
+include "colors.kdl"
 
-// Input device configuration.
-// Find the full list of options on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Input
 input {
     keyboard {
         xkb {
             layout "us,ru"
             options "grp:alt_shift_toggle,compose:ralt,ctrl:nocaps"
         }
+		track-layout "window"
     }
 
-    // Next sections include libinput settings.
-    // Omitting settings disables them, or leaves them at their default values.
     touchpad {
         off
         //tap
@@ -30,9 +23,10 @@ input {
 
     mouse {
         // off
+
         // natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
+        accel-speed 0.0
+        accel-profile "flat"
         // scroll-method "no-scroll"
     }
 
@@ -41,12 +35,6 @@ input {
 
     trackpoint {
         off
-        // natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
-        // scroll-method "on-button-down"
-        // scroll-button 273
-        // middle-emulation
     }
 
     // Uncomment this to make the mouse warp to the center of newly focused windows.
@@ -60,14 +48,12 @@ gestures {
   }
 }
 
+debug {
+  render-drm-device "/dev/dri/renderD129"
+}
 
-// You can configure outputs by their name, which you can find
-// by running `niri msg outputs` while inside a niri instance.
-// The built-in laptop monitor is usually called "eDP-1".
-// Find more information on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
-// Remember to uncomment the node by removing "/-"!
-output "DP-1" {
+
+output "DP-2" {
     mode "2560x1440@143.972"
     scale 1.0
     transform "normal"
@@ -75,16 +61,7 @@ output "DP-1" {
     position x=0 y=0
 }
 
-output "HDMI-A-1" {
-    mode "1920x1080@60"
-    scale 1.0
-    transform "90"
-    position x=2560 y=0
-}
 
-// Settings that influence how windows are positioned and sized.
-// Find more information on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
     gaps 5
     center-focused-column "never"
@@ -111,9 +88,9 @@ layout {
         width 2
         // inactive-color "#505050"
         // active-gradient from="#40f99b" to="#45ecff" angle=69
-        inactive-color "#37212D"
+        //inactive-color "#37212D"
         // active-gradient from="#E5DBE6" to="#E2B7F2" angle=69
-        active-color "#D6C7AC"
+        //active-color "#D6C7AC"
     }
 
     border {
@@ -146,11 +123,14 @@ spawn-at-startup "flatpak" "run" "com.github.wwmm.easyeffects" "--gapplication-s
 spawn-at-startup "swww-daemon"
 spawn-at-startup "~/.config/niri/wallpapers.sh"
 spawn-at-startup "~/.config/niri/float.py"
-spawn-at-startup "/usr/bin/gnome-keyring-daemon" "-s"
 spawn-at-startup "nm-applet"
+spawn-at-startup "xfce4-panel"
+// spawn-at-startup "gpu-screen-recorder" "-w" "screen" "-c" "mkv" "-f" "1" "-r" "2" "-replay-storage" "ram" "-o" "$HOME"
+spawn-at-startup "steam" "-silent"
 
 environment {
   QT_QPA_PLATFORM "wayland;xcb"
+  QT_QPA_PLATFORMTHEME "qt6ct"
   ELECTRON_OZONE_PLATFORM_HINT "auto"
   MOZ_DISABLE_RDD_SANDBOX "1"
   LIBVA_DRIVER_NAME "nvidia"
@@ -171,8 +151,13 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 //screenshot-path null
 
 animations {
-    off
+    // off
     slowdown 0.300
+
+    window-open {
+		duration-ms 150
+	    curve "ease-out-expo"
+    }
 
     window-close {
       duration-ms 1500
@@ -217,16 +202,32 @@ animations {
 		}
       "
     }
+
+    screenshot-ui-open {
+        duration-ms 200
+		curve "ease-out-quad"
+	}
 }
 
-workspace "vertical" {
-    open-on-output "HDMI-A-1"
-} 
+recent-windows {
+    debounce-ms 750
+    open-delay-ms 250
+
+    highlight {
+        padding 30
+        corner-radius 0
+    }
+
+    previews {
+        max-height 269
+        max-scale 0.35
+    } 
+}
 
 // general rules
 
 window-rule {
-    geometry-corner-radius 0
+    geometry-corner-radius 5
     clip-to-geometry true
 }
 
@@ -236,7 +237,7 @@ window-rule {
 }
 
 layer-rule {
-  match namespace="^wallpaper$"
+  match namespace="swww"
   place-within-backdrop true
 }
 
@@ -274,23 +275,24 @@ window-rule {
 		active-color "#faff81"
 		inactive-color "#ffc53a"
 	}
+	draw-border-with-background false
 }
+
 window-rule {
   match is-floating=true
-  default-column-width { proportion 0.5;} 
-  default-window-height { fixed 720; }
+  default-column-width { proportion 0.7;} 
+  default-window-height { proportion 0.6; }
 }
 
 // application rules
 
 window-rule {
   match app-id=r#"org.gnome.Nautilus"#
-  match app-id=r#"nemo"#
   match app-id=r#"Thunar$"#
   match app-id=r#"mpv"#
   match app-id=r#"imv"#	
-	match app-id=r#"pavucontrol"#
-	match app-id=r#"thunar"#
+  match app-id=r#"pavucontrol"#
+  match app-id=r#"org.gnome.Nautilus"#
   match app-id=r#"PortProton"#
   match app-id=r#"mousepad"#
   open-floating true
@@ -299,11 +301,11 @@ window-rule {
 }
 
 window-rule {
-	match app-id=r#"librewolf"#
+  match app-id=r#"librewolf"#
   match app-id=r#"krita"#
   match app-id=r#"blender"#
-	match app-id=r#"codium"#
-	match app-id=r#"^osu!$"#
+  match app-id=r#"codium"#
+  match app-id=r#"^osu!$"#
   match app-id=r#"^magicavoxel.exe$"#
   match app-id=r#"^Godot$"#
   match app-id=r#"^steam_app_.*$"#
@@ -336,11 +338,12 @@ window-rule {
 }
 
 window-rule {
-  match app-id=r#".*wooz"#
+  match app-id=r#"dev.negrel.wooz"#
   focus-ring {
     off
   }
   open-floating true
+  open-maximized true
 }
 
 window-rule {
@@ -364,24 +367,10 @@ hotkey-overlay {
 }
 	
 binds {
-    // Keys consist of modifiers separated by + signs, followed by an XKB key name
-    // in the end. To find an XKB name for a particular key, you may use a program
-    // like wev.
-    //
-    // "Mod" is a special modifier equal to Super when running on a TTY, and to Alt
-    // when running as a winit window.
-    //
-    // Most actions that you can bind here can also be invoked programmatically with
-    // `niri msg action do-something`.
 
-    // Mod-Shift-/, which is usually the same as Mod-?,
-    // shows a list of important hotkeys.
-    // Mod+Shift+Slash { show-hotkey-overlay; }
-
-    // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+D { spawn "kitty"; }
     Super+Space { spawn "fuzzel"; }
-    Mod+A { spawn "nemo";}
+    Mod+A { spawn "nautilus";}
     Mod+B { spawn "librewolf"; }
 	Mod+Shift+B { spawn "chromium"; }
     Mod+Z { spawn "wooz"; }
@@ -390,12 +379,6 @@ binds {
     Mod+Shift+C { spawn "hyprpicker" "-a";}
     Mod+Alt+Pause {spawn "pactl" "set-source-mute" "@DEFAULT_SOURCE@" "toggle";}
 
-    // You can also use a shell. Do this if you need pipes, multiple commands, etc.
-    // Note: the entire command goes as a single argument in the end.
-    // Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }
-
-    // Example volume keys mappings for PipeWire & WirePlumber.
-    // The allow-when-locked=true property makes them work even when the session is locked.
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
     XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
@@ -407,6 +390,8 @@ binds {
     Mod+Down  { focus-window-down; }
     Mod+Up    { focus-window-up; }
     Mod+Right { focus-column-right; }
+	// Mod+WheelScrollDown { focus-column-right; }
+	// Mod+WheelScrollUp { focus-column-left;}
 
     Mod+Ctrl+Left  { move-column-left; }
     Mod+Ctrl+Down  { move-window-down; }
@@ -436,14 +421,6 @@ binds {
     Mod+Shift+U         { move-workspace-down; }
     Mod+Shift+I         { move-workspace-up; }
     
-    // You can refer to workspaces by index. However, keep in mind that
-    // niri is a dynamic workspace system, so these commands are kind of
-    // "best effort". Trying to refer to a workspace index bigger than
-    // the current workspace count will instead refer to the bottommost
-    // (empty) workspace.
-    //
-    // For example, with 2 workspaces + 1 empty, indices 3, 4, 5 and so on
-    // will all refer to the 3rd workspace.
     Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }
     Mod+3 { focus-workspace 3; }
@@ -463,15 +440,6 @@ binds {
     Mod+Ctrl+8 { move-column-to-workspace 8; }
     Mod+Ctrl+9 { move-column-to-workspace 9; }
 
-    // Alternatively, there are commands to move just a single window:
-    // Mod+Ctrl+1 { move-window-to-workspace 1; }
-
-    // Switches focus between the current and the previous workspace.
-    // Mod+Tab { focus-workspace-previous; }
-
-    // The following binds move the focused window in and out of a column.
-    // If the window is alone, they will consume it into the nearby column to the side.
-    // If the window is already in a column, they will expel it out.
     Mod+BracketLeft  { consume-or-expel-window-left; }
     Mod+BracketRight { consume-or-expel-window-right; }
 
@@ -503,13 +471,6 @@ binds {
     Mod+V       { toggle-window-floating; }
     Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
-    // Actions to switch layouts.
-    // Note: if you uncomment these, make sure you do NOT have
-    // a matching layout switch hotkey configured in xkb options above.
-    // Having both at once on the same hotkey will break the switching,
-    // since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
-    // Mod+Space       { switch-layout "next"; }
-    // Mod+Shift+Space { switch-layout "prev"; }
 
     Print { screenshot show-pointer=true; }
     Ctrl+Print { screenshot-screen show-pointer=true; }
@@ -520,4 +481,3 @@ binds {
     Alt+Print { set-dynamic-cast-window; }
     Ctrl+Alt+Print { clear-dynamic-cast-target; }
   }
-
