@@ -16,7 +16,11 @@
     "wlr/taskbar"
   ],
   "modules-right": [
-    "group/hardware",
+    "cpu",
+	"memory",
+	"custom/nvidia-util",
+	"custom/nvidia-temp",
+	"network",
     "custom/sep",
     "tray",
     "custom/sep",
@@ -139,8 +143,7 @@
     "show-passive-items": "true"
   },
   "temperature": {
-    
-    "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+    "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
     "critical-threshold": 80,
     "format": "{icon} {temperatureC}°C",
     "format-icons": [
@@ -187,6 +190,7 @@
             "custom/nvidia-util",
             "custom/nvidia-temp",
             "cpu",
+			"temperature",
             "memory",
             "disk",
             "network"

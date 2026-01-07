@@ -1,4 +1,5 @@
 @import "colors.css";
+@import "complement-colors.css";
 @define-color fg @foreground;
 @define-color bg @background;
 @define-color c1 @color1;
@@ -95,32 +96,36 @@ tooltip * {
   color: @fg;
 }
 
-#cpu, #memory, #disk, #network, #custom-nvidia-temp, #custom-nvidia-util {
+#cpu, #temperature, #memory, #disk, #network, #custom-nvidia-temp, #custom-nvidia-util {
     margin: 0px 7px 0px 7px;
 }
 
 #cpu {
-  color: @c2;
+  color: @c1;
+}
+
+#temperature {
+  color: @ccolor1
 }
 
 #memory {
-  color: @c3;
+  color: @c2;
 }
 
 #network {
-  color: @c4;
+  color: @ccolor6;
 }
 
 #disk {
-  color: @c5;
+  color: @ccolor5;
 }
 
 #custom-nvidia-temp {
-  color: @c6;
+  color: @c3;
 }
 
 #custom-nvidia-util {
-  color: @c1;
+  color: @ccolor3;
 }
 
 #clock {

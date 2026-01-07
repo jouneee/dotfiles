@@ -46,15 +46,16 @@
             "keyColor": "blue"
         },
         {
-            "type": "os",
+            "type": "custom",
             "key": "├─󰣇", 
-            "keyColor": "blue"
+            "keyColor": "blue",
+			"format": "Arc Linux x86_64"
         },
         {
             "type": "custom",
             "key": "├─󰍹",
             "keyColor": "blue",
-            "format": "Plasma 6.9"
+            "format": "xfce lmao"
         },
         {
             "type": "kernel",
