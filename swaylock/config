@@ -2,7 +2,9 @@ daemonize
 indicator
 clock
 indicator-idle-visible
-image=Pictures/MOREADVENTURES-Wallpaper3-blurred.png
+image=/home/catwizard/Pictures/Wallpapers/green_hair,glasses,red_eyes,fang,one_eye_closed,under_covers,round_eyewear,tentacles,open_mouth,waking_up,green_theme,tears.jpg
+effect-blur=5x5
+effect-vignette=0.2:1
 indicator-radius=150
 indicator-thickness=20
 font=Maple Mono NF

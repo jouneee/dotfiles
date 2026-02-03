@@ -13,10 +13,14 @@
     "mpris"
   ],
   "modules-center": [
-    "wlr/taskbar"
+    "cffi/niri-taskbar"
   ],
   "modules-right": [
-    "group/hardware",
+    "cpu",
+	"memory",
+	"custom/nvidia-util",
+	"custom/nvidia-temp",
+	"network",
     "custom/sep",
     "tray",
     "custom/sep",
@@ -27,6 +31,17 @@
     "custom/sep",
     "clock"
   ],
+  "cffi/niri-taskbar": {
+      "module_path": "/home/catwizard/.config/waybar/libniri_taskbar.so",
+      "apps": {
+          "signal": [
+              {
+                  "match": "\\([0-9]+\\)$",
+                  "class": "unread",
+              },
+          ],
+      },
+  },
   "mpris": {
       "format": "{player_icon} {dynamic}",
       "format-paused": "{status_icon} <i>{dynamic}</i>",
@@ -139,8 +154,7 @@
     "show-passive-items": "true"
   },
   "temperature": {
-    
-    "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+    "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
     "critical-threshold": 80,
     "format": "{icon} {temperatureC}°C",
     "format-icons": [
@@ -187,6 +201,7 @@
             "custom/nvidia-util",
             "custom/nvidia-temp",
             "cpu",
+			"temperature",
             "memory",
             "disk",
             "network"

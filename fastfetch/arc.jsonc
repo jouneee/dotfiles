@@ -34,27 +34,27 @@
             "keyColor": "green"
         },
         {
+            "type": "sound",
+            "key": "├─",
+            "keyColor": "green"
+        },
+        {
             "type": "display",
             "key": "╰─󰍹",
             "keyColor": "green"
         },
         "break",
         {
-            "type": "title",
-            "key": "╭─",
-            "format": "{1}@{2}",
-            "keyColor": "blue"
-        },
-        {
-            "type": "os",
-            "key": "├─󰣇", 
-            "keyColor": "blue"
+            "type": "custom",
+            "key": "╭─󰣇", 
+            "keyColor": "blue",
+			"format": "Arc Linux x86_64"
         },
         {
             "type": "custom",
             "key": "├─󰍹",
             "keyColor": "blue",
-            "format": "Plasma 6.9"
+            "format": "xfce lmao"
         },
         {
             "type": "kernel",

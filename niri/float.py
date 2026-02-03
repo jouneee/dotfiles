@@ -27,7 +27,9 @@ class Match:
         if self.title is not None:
             matched &= re.search(self.title, window["title"]) is not None
         if self.app_id is not None:
-            matched &= re.search(self.app_id, window["app_id"]) is not None
+            win_app_id = window.get("app_id")
+            if win_app_id is not None:
+                matched &= re.search(self.app_id, win_app_id) is not None
 
         return matched
 
@@ -65,11 +67,17 @@ RULES = [
     #     ]
     # ),
     Rule(
+        [Match(title="woomer")]
+    ),
+    Rule(
         [Match(title=".*DEBUG.")], 
         exclude=[Match(app_id="^Godot$")],
     ),
     Rule(
         [Match(title="^Preferences$", app_id="blender")]
+    ),
+    Rule(
+        [Match(title="^Media viewer$", app_id="^org.telegram.desktop$")]
     )
 ]
 
@@ -110,7 +118,7 @@ def update_matched(win):
     matched_before = win["matched"]
     win["matched"] = any(r.matches(win) for r in RULES)
     if win["matched"] and not matched_before:
-        print(f"floating title={win['title']}, app_id={win['app_id']}")
+        # print(f"floating title={win['title']}, app_id={win['app_id']}")
         float(win["id"])
 
 

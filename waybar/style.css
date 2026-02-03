@@ -1,4 +1,4 @@
-@import "colors.css";
+@import "/home/catwizard/.cache/pal/waybar-colors.css";
 @define-color fg @foreground;
 @define-color bg @background;
 @define-color c1 @color1;
@@ -14,7 +14,7 @@
   font-family: "Maple Mono NF";
   font-size: 14px;
   font-weight: 600;
-  transition: all 80ms linear;
+  transition: all 120ms linear;
 }
 
 window#waybar {
@@ -61,6 +61,21 @@ tooltip * {
   color: @c1;
 }
 
+.niri-taskbar button {
+    background: none;
+    margin-left: 5px;
+    margin-right: 5px;
+    transition: all 120ms linear;
+}
+
+.niri-taskbar button:hover {
+    background: rgba(1.0,1.0,1.0,0.3)
+}
+
+.niri-taskbar button.focused {
+    background: @c1;
+}
+
 #taskbar {
   background: none;
   padding: 0;
@@ -95,32 +110,36 @@ tooltip * {
   color: @fg;
 }
 
-#cpu, #memory, #disk, #network, #custom-nvidia-temp, #custom-nvidia-util {
+#cpu, #temperature, #memory, #disk, #network, #custom-nvidia-temp, #custom-nvidia-util {
     margin: 0px 7px 0px 7px;
 }
 
 #cpu {
-  color: @c2;
+  color: @c1;
+}
+
+#temperature {
+  color: @ccolor1
 }
 
 #memory {
-  color: @c3;
+  color: @c2;
 }
 
 #network {
-  color: @c4;
+  color: @ccolor6;
 }
 
 #disk {
-  color: @c5;
+  color: @ccolor5;
 }
 
 #custom-nvidia-temp {
-  color: @c6;
+  color: @c3;
 }
 
 #custom-nvidia-util {
-  color: @c1;
+  color: @ccolor3;
 }
 
 #clock {
