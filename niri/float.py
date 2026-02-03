@@ -77,7 +77,7 @@ RULES = [
         [Match(title="^Preferences$", app_id="blender")]
     ),
     Rule(
-        [Match(title="^Media viewer$", app_id="^org.telegram.desktop$")]
+        [Match(title="^Media viewer$", app_id="^org\.telegram\.desktop$")]
     )
 ]
 
