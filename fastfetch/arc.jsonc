@@ -15,61 +15,61 @@
     "modules": ["break",
         {
             "type": "title",
-            "key": "󰌢",
+            "key": "󰌢 ",
             "keyColor": "green"
         },
         {
             "type": "cpu",
-            "key": "├─󰻠",
+            "key": "├─󰻠 ",
             "keyColor": "green"
         }, 
         {
             "type": "gpu",
-            "key": "├─󰍛",
+            "key": "├─󰍛 ",
             "keyColor": "green"
         },
         {
             "type": "memory",
-            "key": "├─󰑭",
+            "key": "├─󰑭 ",
             "keyColor": "green"
         },
         {
             "type": "sound",
-            "key": "├─",
+            "key": "├─ ",
             "keyColor": "green"
         },
         {
             "type": "display",
-            "key": "╰─󰍹",
+            "key": "╰─󰍹 ",
             "keyColor": "green"
         },
         "break",
         {
             "type": "custom",
-            "key": "╭─󰣇", 
+            "key": "╭─󰣇 ", 
             "keyColor": "blue",
 			"format": "Arc Linux x86_64"
         },
         {
             "type": "custom",
-            "key": "├─󰍹",
+            "key": "├─󰍹 ",
             "keyColor": "blue",
             "format": "xfce lmao"
         },
         {
             "type": "kernel",
-            "key": "├─",
+            "key": "├─ ",
             "format": "{1} {2}",
             "keyColor": "blue"
         },
         {
             "type": "packages",
-            "key": "├─󰏖",
+            "key": "├─󰏖 ",
             "keyColor": "blue"
         },
         {
             "type": "uptime",
-            "key": "╰─󰅐",
+            "key": "╰─󰅐 ",
             "keyColor": "blue"
         }
     ]

@@ -21,11 +21,13 @@ environment {
     LIBVA_DRIVER_NAME "nvidia"
     __GLX_VENDOR_LIBRARY_NAME "nvidia"
     NVD_BACKEND "direct"
+    TERMINAL "alacritty"
 }
 
 input {
     keyboard {
         xkb {
+            // variant "colemak_dh_ortho"
             layout "us,ru"
             options "grp:alt_shift_toggle,compose:ralt,ctrl:nocaps"
         }
@@ -66,7 +68,7 @@ gestures {
         off
     }
     dnd-edge-view-scroll {
-        trigger-width 500
+        trigger-width 150
         delay-ms 100
         max-speed 2000
     }
@@ -77,10 +79,6 @@ cursor {
     xcursor-theme "Marisa-Kirisame"
     hide-when-typing
     hide-after-inactive-ms 2000
-}
-
-clipboard {
-    disable-primary
 }
 
 screenshot-path "~/Pictures/Screenshots/Screenshot-from-%Y-%m-%d-%H-%M-%S.png"
@@ -317,6 +315,7 @@ window-rule {
 }
 
 window-rule {
+    match app-id="alacritty"
     match app-id=r#"kitty"#
     default-column-display "tabbed"
 }
@@ -366,7 +365,7 @@ binds {
     Super+Space     { spawn "fuzzel"; }
     Mod+A           { spawn "nemo";}
     Mod+B           { spawn "librewolf"; }
-    Mod+D           { spawn "kitty"; }
+    Mod+D           { spawn "alacritty"; }
     Mod+Z           { spawn "woomer"; }
 	Mod+Shift+B     { spawn "chromium"; }
     Mod+Shift+C     { spawn "~/.config/niri/niri_color_picker.sh";}
@@ -375,7 +374,7 @@ binds {
     Mod+Alt+C       { spawn "~/.config/niri/wal-helper.sh"; } // wallpaper switcher
     Mod+Alt+Pause   { spawn "pactl" "set-source-mute" "@DEFAULT_SOURCE@" "toggle"; }
     // saving a replay in gsr
-    Mod+Insert      {spawn "pkill" "-SIGUSR1" "-f" "gpu-screen-recorder";}
+    Mod+Insert      { spawn "pkill" "-SIGUSR1" "-f" "gpu-screen-recorder";}
 
     Print           { screenshot show-pointer=true; }
     Ctrl+Print      { screenshot-screen show-pointer=true; }

@@ -1,0 +1,23 @@
+window {
+    background: `@background`cc;
+}
+
+label {
+    color: `@foreground`;
+}
+
+.color-text {
+    color: `@foreground`;
+}
+
+.color-subtext0 {
+    color: `@color0`;
+}
+
+.color-red {
+    color: `@color1`;
+}
+
+.hover:hover {
+    background-color: `@foreground`33;
+}

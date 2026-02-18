@@ -1,0 +1,13 @@
+[general]
+import = ["~/.cache/pal/alacritty-colors.toml"]
+live_config_reload = true
+
+[font]
+normal = { family = "Maple Mono NF", style = "Regular" }
+size = 16.0
+offset = { x = 0, y = 0}
+
+[window]
+decorations = "None"
+padding = { x = 5, y = 5 }
+opacity = 1.0

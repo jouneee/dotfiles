@@ -1,0 +1,13 @@
+layout {
+    focus-ring {
+        inactive-color "`@background`"
+        active-color "`@foreground`"
+    }
+}
+
+recent-windows {
+    highlight {
+        active-color "`@color2`"
+        urgent-color "`@color0`"
+    }
+}
