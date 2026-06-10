@@ -1,0 +1,7 @@
+# This file contains fish universal variable definitions.
+# VERSION: 3.0
+SETUVAR --export ANDROID_HOME:/home/catwizard/Android/Sdk/
+SETUVAR --export ANDROID_SDK_ROOT:/home/catwizard/Android/Sdk/
+SETUVAR --export CHROME_EXECUTABLE:/usr/bin/chromium
+SETUVAR __fish_initialized:4300
+SETUVAR fish_user_paths:/opt/cuda/bin\x1e/home/catwizard/\x2elocal/lib/flutter/bin\x1e/home/catwizard/\x2elocal/lib/flutter\x1e/home/catwizard/\x2elocal/bin

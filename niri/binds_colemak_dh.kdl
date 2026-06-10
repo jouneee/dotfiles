@@ -1,0 +1,95 @@
+binds {
+    Super+Space     { spawn "fuzzel"; }
+    Mod+A           { spawn "nemo";}
+    Mod+V           { spawn "librewolf"; }
+    Mod+S           { spawn "alacritty"; }
+    Mod+Z           { spawn "wgpu_zoom"; }
+	Mod+Shift+K     { spawn "chromium"; }
+    Mod+Shift+C     { spawn "~/.config/niri/niri_color_picker.sh";}
+    Mod+Shift+I     { spawn "~/.config/niri/swaylock.sh"; }
+    Mod+Shift+R     { spawn "alacritty" "-e" "rmpc"; }
+
+    Mod+Shift+G     { spawn "~/Documents/code/scripts/collapse_workspaces.lua"; } // collaspe all windows into active workspace
+    Mod+Shift+SEMICOLON     { power-off-monitors; }
+    Mod+Alt+C       { spawn "~/.config/niri/wal-helper.sh"; } // wallpaper switcher
+    Mod+Alt+Pause   { spawn "pactl" "set-source-mute" "@DEFAULT_SOURCE@" "toggle"; }
+    // saving a replay in gsr
+    Mod+Insert      { spawn "pkill" "-SIGUSR1" "-f" "gpu-screen-recorder";}
+
+    Print           { screenshot show-pointer=true; }
+    Ctrl+Print      { screenshot-screen show-pointer=true; }
+    Alt+Print       { set-dynamic-cast-window; }
+    Ctrl+Alt+Print  { clear-dynamic-cast-target; }
+
+    Mod+C           { center-column; }
+    Mod+T           { maximize-column; }
+    Mod+P           { switch-preset-column-width; }
+    Mod+W           { toggle-column-tabbed-display; }
+    Mod+Shift+T     { fullscreen-window; }
+    Mod+Alt+T       { toggle-windowed-fullscreen; }
+
+    Mod+D           { toggle-window-floating; }
+    Mod+Shift+D     { switch-focus-between-floating-and-tiling; }
+
+    Mod+Q           { close-window; }
+    Mod+Shift+F     { quit; }
+    Ctrl+Alt+Delete { quit; }
+
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
+    XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+
+    Mod+Left        { focus-column-left; }
+    Mod+Down        { focus-window-down; }
+    Mod+Up          { focus-window-up; }
+    Mod+Right       { focus-column-right; }
+
+    Mod+N        { focus-column-left; }
+    Mod+E        { focus-window-down; }
+    Mod+I          { focus-window-up; }
+    Mod+O       { focus-column-right; }
+
+    Mod+Ctrl+Left   { move-column-left; }
+    Mod+Ctrl+Down   { move-window-down; }
+    Mod+Ctrl+Up     { move-window-up; }
+    Mod+Ctrl+Right  { move-column-right; }
+
+    Mod+Shift+Left  { consume-or-expel-window-left; }
+    Mod+Shift+Right { consume-or-expel-window-right; }
+
+    Mod+Comma       { consume-window-into-column; } // Consume one window from the right to the bottom of the focused column.
+    Mod+Period      { expel-window-from-column; } // Expel the bottom window from the focused column to the right.
+
+    Mod+Home        { focus-column-first; }
+    Mod+End         { focus-column-last; }
+    Mod+Ctrl+Home   { move-column-to-first; }
+    Mod+Ctrl+End    { move-column-to-last; }
+
+    Mod+Page_Down   { focus-workspace-down; }
+    Mod+Page_Up     { focus-workspace-up; }
+    Mod+Ctrl+Page_Down  { move-column-to-workspace-down; }
+    Mod+Ctrl+Page_Up    { move-column-to-workspace-up; }
+
+    Mod+Shift+Page_Down { move-workspace-down; }
+    Mod+Shift+Page_Up   { move-workspace-up; }
+
+    Mod+1      { focus-workspace 1; }
+    Mod+2      { focus-workspace 2; }
+    Mod+3      { focus-workspace 3; }
+    Mod+4      { focus-workspace 4; }
+    Mod+5      { focus-workspace 5; }
+    Mod+6      { focus-workspace 6; }
+    Mod+7      { focus-workspace 7; }
+    Mod+8      { focus-workspace 8; }
+    Mod+9      { focus-workspace 9; }
+    Mod+Ctrl+1 { move-column-to-workspace 1; }
+    Mod+Ctrl+2 { move-column-to-workspace 2; }
+    Mod+Ctrl+3 { move-column-to-workspace 3; }
+    Mod+Ctrl+4 { move-column-to-workspace 4; }
+    Mod+Ctrl+5 { move-column-to-workspace 5; }
+    Mod+Ctrl+6 { move-column-to-workspace 6; }
+    Mod+Ctrl+7 { move-column-to-workspace 7; }
+    Mod+Ctrl+8 { move-column-to-workspace 8; }
+    Mod+Ctrl+9 { move-column-to-workspace 9; }
+}

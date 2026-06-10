@@ -16,32 +16,32 @@
         {
             "type": "title",
             "key": "󰌢 ",
-            "keyColor": "green"
+            "keyColor": "cyan"
         },
         {
             "type": "cpu",
             "key": "├─󰻠 ",
-            "keyColor": "green"
+            "keyColor": "cyan"
         }, 
         {
             "type": "gpu",
             "key": "├─󰍛 ",
-            "keyColor": "green"
+            "keyColor": "cyan"
         },
         {
             "type": "memory",
             "key": "├─󰑭 ",
-            "keyColor": "green"
+            "keyColor": "cyan"
         },
         {
             "type": "sound",
             "key": "├─ ",
-            "keyColor": "green"
+            "keyColor": "cyan"
         },
         {
             "type": "display",
             "key": "╰─󰍹 ",
-            "keyColor": "green"
+            "keyColor": "cyan"
         },
         "break",
         {
@@ -51,10 +51,9 @@
 			"format": "Arc Linux x86_64"
         },
         {
-            "type": "custom",
+            "type": "wm",
             "key": "├─󰍹 ",
-            "keyColor": "blue",
-            "format": "xfce lmao"
+            "keyColor": "blue"
         },
         {
             "type": "kernel",
@@ -71,6 +70,9 @@
             "type": "uptime",
             "key": "╰─󰅐 ",
             "keyColor": "blue"
+        },
+        {
+            "type": "colors"
         }
     ]
 }

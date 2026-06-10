@@ -1,4 +1,4 @@
-@import "/home/catwizard/.cache/pal/waybar-colors.css";
+@import "/home/catwizard/.config/waybar/colors.css";
 @define-color fg @foreground;
 @define-color bg @background;
 @define-color c1 @color1;
@@ -14,7 +14,7 @@
   font-family: "Maple Mono NF";
   font-size: 14px;
   font-weight: 600;
-  transition: all 120ms linear;
+  transition: none;
 }
 
 window#waybar {
@@ -75,6 +75,19 @@ tooltip * {
 .niri-taskbar button.focused {
     background: @c1;
 }
+
+.niri-taskbar workspace-group {
+    background: red,
+}
+
+.niri-taskbar workspace-1 {
+    background: green,
+}
+
+.niri-taskbar workspace-2 {
+    background: blue,
+}
+
 
 #taskbar {
   background: none;

@@ -2,7 +2,7 @@ daemonize
 indicator
 clock
 indicator-idle-visible
-image=/home/catwizard/Pictures/Wallpapers/green_hair,glasses,red_eyes,fang,one_eye_closed,under_covers,round_eyewear,tentacles,open_mouth,waking_up,green_theme,tears.jpg
+image=/home/catwizard/Pictures/Photo_wallpapers/sample_9ddb07babec4e1e59004e01122c2a5e9d8329846.jpg
 effect-blur=5x5
 effect-vignette=0.2:1
 indicator-radius=150

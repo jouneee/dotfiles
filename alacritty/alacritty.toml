@@ -1,5 +1,5 @@
 [general]
-import = ["~/.cache/pal/alacritty-colors.toml"]
+import = ["~/.config/alacritty/colors.toml"]
 live_config_reload = true
 
 [font]
@@ -10,4 +10,4 @@ offset = { x = 0, y = 0}
 [window]
 decorations = "None"
 padding = { x = 5, y = 5 }
-opacity = 1.0
+opacity = 0.75

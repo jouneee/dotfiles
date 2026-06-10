@@ -67,9 +67,6 @@ RULES = [
     #     ]
     # ),
     Rule(
-        [Match(title="woomer")]
-    ),
-    Rule(
         [Match(title=".*DEBUG.")], 
         exclude=[Match(app_id="^Godot$")],
     ),
