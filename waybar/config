@@ -4,33 +4,20 @@
   "mode": "dock",
   "exclusive": false,
   "passthrough": false,
-  "margin": "3 3 0 3",
-  "spacing": 2,
+  "spacing": 10,
   "reload_style_on_change": true,
   "modules-left": [
-    "custom/os_button",
-    "ext/workspaces",
-    "custom/sep",
-    "mpris"
+      "clock",
+      "niri/language",
+      "pulseaudio#output",
+      "pulseaudio#input",
+      "cffi/niri-taskbar"
   ],
   "modules-center": [
-    "cffi/niri-taskbar"
   ],
   "modules-right": [
-    "cpu",
-	"memory",
-	"custom/nvidia-util",
-	"custom/nvidia-temp",
-	"network",
-    "custom/sep",
     "tray",
-    "custom/sep",
-    "pulseaudio#output",
-    "pulseaudio#input",
-    "custom/sep",
-    "niri/language",
-    "custom/sep",
-    "clock"
+    "custom/os_button"
   ],
   "cffi/niri-taskbar": {
       "module_path": "/home/catwizard/.config/waybar/libniri_taskbar.so",
@@ -38,10 +25,10 @@
           "signal": [
               {
                   "match": "\\([0-9]+\\)$",
-                  "class": "unread",
-              },
-          ],
-      },
+                  "class": "unread"
+              }
+          ]
+      }
   },
   "mpd": {
       "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
@@ -75,7 +62,7 @@
       "format": "{player_icon} {dynamic}",
       "format-paused": "{status_icon} <i>{dynamic}</i>",
       "dynamic-order": ["artist", "title", "position", "length"],
-      "title-len": 30,
+      "title-len": 12,
       "player-icons": {
         "default": "▶",
         "mpv": "🎵"
@@ -83,7 +70,7 @@
       "status-icons": {
         "paused": "⏸"
       },
-      "ignored-players": ["firefox", "librewolf", "chromium","fluXis"],
+      "ignored-players": ["firefox", "librewolf", "chromium", "fluXis"],
       "interval": 10,
   },
   "custom/os_button": {
@@ -124,7 +111,7 @@
       "ignore-list": []
   },
   "custom/sep": {
-    "format": "──",
+    "format": " ",
     "rotate": 90
   },
   "custom/group-sep": {
@@ -245,7 +232,7 @@
         "smooth-scrolling-threshold": 1,
         "max-volume": 100,
         "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
-        "on-click-middle": "pwvucontrol",
+        "on-click-middle": "pavucontrol",
         "on-scroll-up": false,
         "on-scroll-down": false
     },
@@ -259,6 +246,6 @@
         "scroll-step": false,
         "smooth-scrolling-threshold": 1,
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-        "on-click-middle": "pwvucontrol"
+        "on-click-middle": "pavucontrol"
     }
 }
